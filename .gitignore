@@ -9,6 +9,7 @@ web/.vite/
 Streamlit/__pycache__/
 Streamlit/.venv/
 Streamlit/venv/
+Streamlit/venv311/
 Streamlit/.env
 *.py[cod]
 *.pyo
