@@ -1,0 +1,32 @@
+### Node/Vite
+node_modules/
+web/node_modules/
+web/dist/
+web/.vite/
+
+
+### Python/Streamlit/FastAPI
+Streamlit/__pycache__/
+Streamlit/.venv/
+Streamlit/venv/
+Streamlit/.env
+*.py[cod]
+*.pyo
+*.pyd
+
+### General
+.idea/
+.vscode/
+dist/
+build/
+.DS_Store
+*.log
+*.sqlite3
+*.pyc
+
+### Environment artifacts
+.env.local
+.env.*.local
+.coverage
+coverage.xml
+htmlcov/
