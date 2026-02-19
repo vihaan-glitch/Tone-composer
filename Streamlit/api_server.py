@@ -1,15 +1,20 @@
 from __future__ import annotations
 
+import logging
 import os
+from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from gemini_music import GeminiMusicError, generate_gemini_music_audio
 
 APP_TITLE = "Gemini Lyria Audio API"
+
+logger = logging.getLogger(__name__)
 
 class GeminiAudioRequest(BaseModel):
     prompt: str = Field(default="", description="Text prompt describing the tone to generate.")
@@ -20,6 +25,15 @@ class GeminiAudioRequest(BaseModel):
     duration_seconds: int = Field(default=12, ge=6, le=30)
 
 app = FastAPI(title=APP_TITLE)
+
+frontend_path = Path(__file__).resolve().parents[1] / "web" / "dist"
+if frontend_path.is_dir():
+    app.mount("/", StaticFiles(directory=str(frontend_path), html=True), name="frontend")
+else:
+    logger.warning(
+        "Frontend build not found at `%s`. Run `npm run build` inside web/ so FastAPI can serve the SPA.",
+        frontend_path,
+    )
 
 default_origins = [
     "http://localhost:5173",
