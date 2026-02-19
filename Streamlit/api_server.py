@@ -38,7 +38,7 @@ else:
 default_origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://tone-composer.vercel.app",
+    "https://tone-composer-mu.vercel.app",
 ]
 cors_env = os.environ.get("CORS_ALLOW_ORIGINS", "").strip()
 allow_origins = [o.strip() for o in cors_env.split(",") if o.strip()] if cors_env else default_origins
